@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Event Name - Date & Location</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Custom styles for hero section background image */
+        .hero-bg {
+            background-image: url('https://placehold.co/1920x1080/6366f1/ffffff?text=Event+Hero+Image'); /* Purple-blue themed background */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* Style for speaker/performer images, ensuring rounded corners and consistent sizing */
+        .speaker-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+        }
+
+        /* Mobile menu overlay styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 40; /* Below the actual menu */
+            display: none; /* Hidden by default */
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Start off-screen */
+            width: 70%;
+            max-width: 300px;
+            height: 100%;
+            background-color: white;
+            z-index: 50;
+            transition: right 0.3s ease-in-out;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0; /* Slide in */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm py-4">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600 rounded-md p-2 hover:bg-indigo-50 transition duration-300">Your Event</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-gray-100">About</a>
+                <a href="#schedule" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-gray-100">Schedule</a>
+                <a href="#speakers" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-gray-100">Speakers</a>
+                <a href="#register" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-gray-100">Register</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 rounded-md p-2 hover:bg-gray-100">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="close-mobile-menu" class="self-end text-gray-600 hover:text-gray-900 focus:outline-none mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <a href="#about" class="block text-gray-800 hover:text-indigo-600 font-medium py-3 border-b border-gray-100" onclick="closeMobileMenu()">About</a>
+        <a href="#schedule" class="block text-gray-800 hover:text-indigo-600 font-medium py-3 border-b border-gray-100" onclick="closeMobileMenu()">Schedule</a>
+        <a href="#speakers" class="block text-gray-800 hover:text-indigo-600 font-medium py-3 border-b border-gray-100" onclick="closeMobileMenu()">Speakers</a>
+        <a href="#register" class="block text-gray-800 hover:text-indigo-600 font-medium py-3 border-b border-gray-100" onclick="closeMobileMenu()">Register</a>
+        <a href="#contact" class="block text-gray-800 hover:text-indigo-600 font-medium py-3" onclick="closeMobileMenu()">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-20 md:py-32 text-white text-center rounded-b-xl shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
+                The Future of Innovation Summit
+            </h1>
+            <p class="text-lg md:text-xl mb-4 max-w-2xl mx-auto drop-shadow-md">
+                Join us for an inspiring event exploring cutting-edge technologies and ideas.
+            </p>
+            <p class="text-xl md:text-2xl font-semibold mb-10 drop-shadow-md">
+                October 26-27, 2025 | Grand Convention Center, Tech City
+            </p>
+            <a href="#register" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
+                Register Now
+            </a>
+        </div>
+    </section>
+
+    <!-- About Event Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">About the Summit</h2>
+            <div class="max-w-3xl mx-auto text-center text-gray-700 leading-relaxed">
+                <p class="mb-4">
+                    The Future of Innovation Summit is a premier event bringing together industry leaders, innovators, and enthusiasts from around the globe. Our goal is to foster collaboration, share groundbreaking insights, and inspire the next generation of technological advancements.
+                </p>
+                <p class="mb-4">
+                    This year's summit will feature keynote speeches from visionary leaders, interactive workshops, panel discussions on emerging trends, and networking opportunities designed to connect you with like-minded professionals.
+                </p>
+                <p>
+                    Whether you're a seasoned expert or just starting your journey in innovation, the summit offers invaluable learning and growth opportunities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Event Schedule</h2>
+            <div class="max-w-4xl mx-auto">
+                <!-- Day 1 -->
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b-2 border-indigo-500 pb-2">Day 1: October 26, 2025</h3>
+                <div class="space-y-6 mb-12">
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <div class="font-bold text-indigo-600 w-full md:w-32 flex-shrink-0">9:00 AM - 10:00 AM</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900">Opening Keynote: The AI Revolution</h4>
+                            <p class="text-gray-600">Speaker: Dr. Emily Chen, CEO of InnovateAI</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <div class="font-bold text-indigo-600 w-full md:w-32 flex-shrink-0">10:30 AM - 12:00 PM</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900">Workshop: Blockchain Fundamentals</h4>
+                            <p class="text-gray-600">Facilitator: John Doe, Blockchain Architect</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <div class="font-bold text-indigo-600 w-full md:w-32 flex-shrink-0">12:00 PM - 1:00 PM</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900">Networking Lunch</h4>
+                            <p class="text-gray-600">Connect with peers and industry leaders.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6 border-b-2 border-indigo-500 pb-2">Day 2: October 27, 2025</h3>
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <div class="font-bold text-indigo-600 w-full md:w-32 flex-shrink-0">9:30 AM - 11:00 AM</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900">Panel Discussion: Sustainable Tech</h4>
+                            <p class="text-gray-600">Panelists: Various experts in green technology.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <div class="font-bold text-indigo-600 w-full md:w-32 flex-shrink-0">11:30 AM - 1:00 PM</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900">Fireside Chat: Future of Work</h4>
+                            <p class="text-gray-600">Speaker: Sarah Lee, HR Futurist</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col md:flex-row items-start md:items-center gap-4">
+                        <div class="font-bold text-indigo-600 w-full md:w-32 flex-shrink-0">2:00 PM - 3:00 PM</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900">Closing Remarks & Awards</h4>
+                            <p class="text-gray-600">Event Organizers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers/Performers Section -->
+    <section id="speakers" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Meet Our Speakers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Speaker 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/150x150/818cf8/ffffff?text=EC" alt="Dr. Emily Chen" class="speaker-img mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Dr. Emily Chen</h3>
+                    <p class="text-indigo-600 font-medium mb-2">CEO, InnovateAI</p>
+                    <p class="text-gray-600 text-sm">Renowned expert in artificial intelligence and machine learning.</p>
+                </div>
+                <!-- Speaker 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/150x150/a78bfa/ffffff?text=JD" alt="John Doe" class="speaker-img mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">John Doe</h3>
+                    <p class="text-indigo-600 font-medium mb-2">Blockchain Architect</p>
+                    <p class="text-gray-600 text-sm">Leading developer in decentralized ledger technologies.</p>
+                </div>
+                <!-- Speaker 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/150x150/c4b5fd/ffffff?text=SL" alt="Sarah Lee" class="speaker-img mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Sarah Lee</h3>
+                    <p class="text-indigo-600 font-medium mb-2">HR Futurist</p>
+                    <p class="text-gray-600 text-sm">Pioneering new models for the future of work and talent management.</p>
+                </div>
+                <!-- Speaker 4 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                    <img src="https://placehold.co/150x150/e0e7ff/ffffff?text=MP" alt="Michael Park" class="speaker-img mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Michael Park</h3>
+                    <p class="text-indigo-600 font-medium mb-2">Quantum Computing Researcher</p>
+                    <p class="text-gray-600 text-sm">Exploring the frontiers of quantum computing and its applications.</p>
+                </div>
+                <!-- Add more speakers here by copying and pasting the above div structure -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register" class="py-16 md:py-24 bg-indigo-600 text-white text-center rounded-t-xl shadow-lg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Secure Your Spot Today!</h2>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                Don't miss out on this unparalleled opportunity to learn, network, and grow.
+            </p>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg text-gray-800">
+                <form>
+                    <div class="mb-6">
+                        <label for="reg-name" class="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
+                        <input type="text" id="reg-name" name="reg-name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" placeholder="Your Full Name">
+                    </div>
+                    <div class="mb-6">
+                        <label for="reg-email" class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+                        <input type="email" id="reg-email" name="reg-email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" placeholder="your.email@example.com">
+                    </div>
+                    <div class="mb-6">
+                        <label for="ticket-type" class="block text-gray-700 text-sm font-bold mb-2">Ticket Type</label>
+                        <select id="ticket-type" name="ticket-type" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200">
+                            <option value="standard">Standard Pass ($299)</option>
+                            <option value="vip">VIP Pass ($499)</option>
+                            <option value="student">Student Pass ($149)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Complete Registration
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Contact Us</h2>
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <form>
+                    <div class="mb-6">
+                        <label for="contact-name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                        <input type="text" id="contact-name" name="contact-name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" placeholder="Your Name">
+                    </div>
+                    <div class="mb-6">
+                        <label for="contact-email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="contact-email" name="contact-email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" placeholder="your.email@example.com">
+                    </div>
+                    <div class="mb-6">
+                        <label for="contact-message" class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                        <textarea id="contact-message" name="contact-message" rows="6" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" placeholder="Your message..."></textarea>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="text-center mt-12 text-gray-700">
+                <p><strong>Email:</strong> info@yourevent.com</p>
+                <p><strong>Phone:</strong> +1 (999) 888-7777</p>
+                <p><strong>Location:</strong> Grand Convention Center, Tech City</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 rounded-t-xl shadow-inner">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Your Event Name. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when a navigation link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', closeMobileMenu);
+        });
+    </script>
+
+</body>
+</html>
